@@ -1,0 +1,25 @@
+flutter_native_splash:
+
+  color_android: "121312"
+  color_dark_android: "121312"
+
+  image:                'assets/images/splash.png'
+  image_dark:          'assets/images/splash.png'
+
+  branding:      'assets/images/route.png'
+  branding_dark: 'assets/images/route.png'
+
+  fullscreen: true
+
+  android_12:
+
+    color:  "121312"
+    color_dark:  "121312"
+
+
+    image: 'assets/images/splash.png'
+    image_dark: 'assets/images/splash.png'
+
+
+    branding:     'assets/images/route.png'
+    branding_dark: 'assets/images/route.png'
