@@ -1,47 +1,21 @@
-/// type : "object"
-/// properties : {"message":{"type":"string"},"data":{"type":"object","properties":{"email":{"type":"string"},"password":{"type":"string"},"name":{"type":"string"},"phone":{"type":"string"},"avaterId":{"type":"number"},"_id":{"type":"string"},"createdAt":{"type":"string"},"updatedAt":{"type":"string"},"__v":{"type":"number"}}}}
+/// message : "User created successfully"
+/// data : {"email":"amr222222222@gmail.com","password":"$2b$10$35aRQeeVsH9ozqA.ZE1xPuvVR9WzoreNpqY4cUVgiv/YgF8FQA4Iq","name":"amr mustafa","phone":"+201141209334","avaterId":1,"_id":"691f5a506340be552b9a0e09","createdAt":"2025-11-20T18:13:36.365Z","updatedAt":"2025-11-20T18:13:36.365Z","__v":0}
 
 class RegisterResponse {
-  final String? status;
-  final String? message;
-  final Map<String, dynamic>? data;
-
   RegisterResponse({
-    this.status,
     this.message,
-    this.data,
-  });
+    this.data,});
 
-  factory RegisterResponse.fromJson(Map<String, dynamic> json) {
-    return RegisterResponse(
-      status: json['status'],
-      message: json['message'],
-      data: json['data'],
-    );
-  }
-}
-
-
-/// message : {"type":"string"}
-/// data : {"type":"object","properties":{"email":{"type":"string"},"password":{"type":"string"},"name":{"type":"string"},"phone":{"type":"string"},"avaterId":{"type":"number"},"_id":{"type":"string"},"createdAt":{"type":"string"},"updatedAt":{"type":"string"},"__v":{"type":"number"}}}
-
-class Properties {
-  Properties({
-      this.message, 
-      this.data,});
-
-  Properties.fromJson(dynamic json) {
-    message = json['message'] != null ? Message.fromJson(json['message']) : null;
+  RegisterResponse.fromJson(dynamic json) {
+    message = json['message'];
     data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
-  Message? message;
+  String? message;
   Data? data;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    if (message != null) {
-      map['message'] = message?.toJson();
-    }
+    map['message'] = message;
     if (data != null) {
       map['data'] = data?.toJson();
     }
@@ -50,294 +24,60 @@ class Properties {
 
 }
 
-/// type : "object"
-/// properties : {"email":{"type":"string"},"password":{"type":"string"},"name":{"type":"string"},"phone":{"type":"string"},"avaterId":{"type":"number"},"_id":{"type":"string"},"createdAt":{"type":"string"},"updatedAt":{"type":"string"},"__v":{"type":"number"}}
+/// email : "amr222222222@gmail.com"
+/// password : "$2b$10$35aRQeeVsH9ozqA.ZE1xPuvVR9WzoreNpqY4cUVgiv/YgF8FQA4Iq"
+/// name : "amr mustafa"
+/// phone : "+201141209334"
+/// avaterId : 1
+/// _id : "691f5a506340be552b9a0e09"
+/// createdAt : "2025-11-20T18:13:36.365Z"
+/// updatedAt : "2025-11-20T18:13:36.365Z"
+/// __v : 0
 
 class Data {
   Data({
-      this.type, 
-      this.properties,});
+    this.email,
+    this.password,
+    this.name,
+    this.phone,
+    this.avaterId,
+    this.id,
+    this.createdAt,
+    this.updatedAt,
+    this.v,});
 
   Data.fromJson(dynamic json) {
-    type = json['type'];
-    properties = json['properties'] != null ? Properties.fromJson(json['properties']) : null;
+    email = json['email'];
+    password = json['password'];
+    name = json['name'];
+    phone = json['phone'];
+    avaterId = json['avaterId'];
+    id = json['_id'];
+    createdAt = json['createdAt'];
+    updatedAt = json['updatedAt'];
+    v = json['__v'];
   }
-  String? type;
-  Properties? properties;
+  String? email;
+  String? password;
+  String? name;
+  String? phone;
+  int? avaterId;
+  String? id;
+  String? createdAt;
+  String? updatedAt;
+  int? v;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    map['type'] = type;
-    if (properties != null) {
-      map['properties'] = properties?.toJson();
-    }
-    return map;
-  }
-
-}
-
-/// email : {"type":"string"}
-/// password : {"type":"string"}
-/// name : {"type":"string"}
-/// phone : {"type":"string"}
-/// avaterId : {"type":"number"}
-/// _id : {"type":"string"}
-/// createdAt : {"type":"string"}
-/// updatedAt : {"type":"string"}
-/// __v : {"type":"number"}
-
-class Register {
-  Register({
-      this.email, 
-      this.password, 
-      this.name, 
-      this.phone, 
-      this.avaterId,
-      this.id, 
-      this.createdAt, 
-      this.updatedAt, 
-      this.v,});
-
-  Register.fromJson(dynamic json) {
-    email = json['email'] != null ? Email.fromJson(json['email']) : null;
-    password = json['password'] != null ? Password.fromJson(json['password']) : null;
-    name = json['name'] != null ? Name.fromJson(json['name']) : null;
-    phone = json['phone'] != null ? Phone.fromJson(json['phone']) : null;
-    avaterId = json['avaterId'] != null ? AvaterId.fromJson(json['avaterId']) : null;
-    id = json['_id'] != null ? Id.fromJson(json['_id']) : null;
-    createdAt = json['createdAt'] != null ? CreatedAt.fromJson(json['createdAt']) : null;
-    updatedAt = json['updatedAt'] != null ? UpdatedAt.fromJson(json['updatedAt']) : null;
-    v = json['__v'] != null ? V.fromJson(json['__v']) : null;
-  }
-  Email? email;
-  Password? password;
-  Name? name;
-  Phone? phone;
-  AvaterId? avaterId;
-  Id? id;
-  CreatedAt? createdAt;
-  UpdatedAt? updatedAt;
-  V? v;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    if (email != null) {
-      map['email'] = email?.toJson();
-    }
-    if (password != null) {
-      map['password'] = password?.toJson();
-    }
-    if (name != null) {
-      map['name'] = name?.toJson();
-    }
-    if (phone != null) {
-      map['phone'] = phone?.toJson();
-    }
-    if (avaterId != null) {
-      map['avaterId'] = avaterId?.toJson();
-    }
-    if (id != null) {
-      map['_id'] = id?.toJson();
-    }
-    if (createdAt != null) {
-      map['createdAt'] = createdAt?.toJson();
-    }
-    if (updatedAt != null) {
-      map['updatedAt'] = updatedAt?.toJson();
-    }
-    if (v != null) {
-      map['__v'] = v?.toJson();
-    }
-    return map;
-  }
-
-}
-
-/// type : "number"
-
-class V {
-  V({
-      this.type,});
-
-  V.fromJson(dynamic json) {
-    type = json['type'];
-  }
-  String? type;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['type'] = type;
-    return map;
-  }
-
-}
-
-/// type : "string"
-
-class UpdatedAt {
-  UpdatedAt({
-      this.type,});
-
-  UpdatedAt.fromJson(dynamic json) {
-    type = json['type'];
-  }
-  String? type;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['type'] = type;
-    return map;
-  }
-
-}
-
-/// type : "string"
-
-class CreatedAt {
-  CreatedAt({
-      this.type,});
-
-  CreatedAt.fromJson(dynamic json) {
-    type = json['type'];
-  }
-  String? type;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['type'] = type;
-    return map;
-  }
-
-}
-
-/// type : "string"
-
-class Id {
-  Id({
-      this.type,});
-
-  Id.fromJson(dynamic json) {
-    type = json['type'];
-  }
-  String? type;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['type'] = type;
-    return map;
-  }
-
-}
-
-/// type : "number"
-
-class AvaterId {
-  AvaterId({
-      this.type,});
-
-  AvaterId.fromJson(dynamic json) {
-    type = json['type'];
-  }
-  String? type;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['type'] = type;
-    return map;
-  }
-
-}
-
-/// type : "string"
-
-class Phone {
-  Phone({
-      this.type,});
-
-  Phone.fromJson(dynamic json) {
-    type = json['type'];
-  }
-  String? type;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['type'] = type;
-    return map;
-  }
-
-}
-
-/// type : "string"
-
-class Name {
-  Name({
-      this.type,});
-
-  Name.fromJson(dynamic json) {
-    type = json['type'];
-  }
-  String? type;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['type'] = type;
-    return map;
-  }
-
-}
-
-/// type : "string"
-
-class Password {
-  Password({
-      this.type,});
-
-  Password.fromJson(dynamic json) {
-    type = json['type'];
-  }
-  String? type;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['type'] = type;
-    return map;
-  }
-
-}
-
-/// type : "string"
-
-class Email {
-  Email({
-      this.type,});
-
-  Email.fromJson(dynamic json) {
-    type = json['type'];
-  }
-  String? type;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['type'] = type;
-    return map;
-  }
-
-}
-
-/// type : "string"
-
-class Message {
-  Message({
-      this.type,});
-
-  Message.fromJson(dynamic json) {
-    type = json['type'];
-  }
-  String? type;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['type'] = type;
+    map['email'] = email;
+    map['password'] = password;
+    map['name'] = name;
+    map['phone'] = phone;
+    map['avaterId'] = avaterId;
+    map['_id'] = id;
+    map['createdAt'] = createdAt;
+    map['updatedAt'] = updatedAt;
+    map['__v'] = v;
     return map;
   }
 
