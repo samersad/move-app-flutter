@@ -290,7 +290,7 @@ class _RegisterState extends State<Register> {
             pos: "Ok",
             posAction: () {
               Navigator.of(context).pushNamedAndRemoveUntil(
-                AppRouts.updateProfileRouteName,
+                AppRouts.loginRouteName,
                     (route) => false,
               );
             },
