@@ -210,38 +210,46 @@ class _LoginState extends State<Login> {
     if (formkey.currentState?.validate() == true) {
       try {
         AlertDialogUtils.showLoading(context: context, msg: "loading...");
+
         final response = await ApiService().login(
           email: emailController.text,
           password: passwordController.text,
         );
+
         AlertDialogUtils.hideLoading(context: context);
-        final message = response.properties?.message?.type ?? "";
+
+        final message = response.message ?? "";
+        final token = response.data ?? "";
+
         if (message == "Success Login") {
-          final token = response.properties?.data?.type ?? "";  // data ==token from api
+
           if (token.isNotEmpty) {
             final prefs = await SharedPreferences.getInstance();
             await prefs.setString("token", token);
             print("Token saved successfully: $token");
           }
 
-          AlertDialogUtils.showMessage(context: context, msg: message,title: "success",
-              pos: "Ok",posAction: (){
-                Navigator.of(context).pushNamedAndRemoveUntil(AppRouts.updateProfileRouteName,
-                        (route)=>false);
-              },
-              nav: "dismiss",
-              navAction: (){
-                Navigator.pop(context);
-              }
+          AlertDialogUtils.showMessage(
+            context: context,
+            msg: message,
+            title: "success",
+            pos: "Ok",
+            posAction: () {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                AppRouts.updateProfileRouteName,
+                    (route) => false,
+              );
+            },
           );
         }
 
-
       } catch (e) {
         AlertDialogUtils.hideLoading(context: context);
-        AlertDialogUtils.showMessage(context: context,
-          msg: e.toString(),title: "error");
-
+        AlertDialogUtils.showMessage(
+          context: context,
+          msg: e.toString(),
+          title: "error",
+        );
       }
     }
   }

@@ -48,7 +48,6 @@ import 'api_constants.dart';
     required String password,
   }) async {
     try {
-
       final response = await dio.post(
         EndPoints.loginApi,
         data: {
@@ -57,15 +56,7 @@ import 'api_constants.dart';
         },
       );
 
-      final data = response.data;
-      final formattedJson = {
-        "type": "object",
-        "properties": {
-          "message": {"type": data["message"]},
-          "data": {"type": data["data"]},
-        }
-      };
-      return LoginResponse.fromJson(formattedJson);
+      return LoginResponse.fromJson(response.data); // ← الصحيsح
     } on DioException catch (e) {
       if (e.response != null) {
         throw Exception("Error: ${e.response?.data}");

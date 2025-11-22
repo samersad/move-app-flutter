@@ -1,90 +1,22 @@
-/// type : "object"
-/// properties : {"message":{"type":"string"},"data":{"type":"string"}}
+/// message : "Success Login"
+/// data : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MWY1YTUwNjM0MGJlNTUyYjlhMGUwOSIsImVtYWlsIjoiYW1yMjIyMjIyMjIyQGdtYWlsLmNvbSIsImlhdCI6MTc2MzY2NDI1MX0.wLTD0QuKScJqDYGZRY2YP65wnUN7rZxsCV4XOS0F5rY"
 
 class LoginResponse {
   LoginResponse({
-      this.type, 
-      this.properties,});
+    this.message,
+    this.data,});
 
   LoginResponse.fromJson(dynamic json) {
-    type = json['type'];
-    properties = json['properties'] != null ? Properties.fromJson(json['properties']) : null;
+    message = json['message'];
+    data = json['data'];
   }
-  String? type;
-  Properties? properties;
+  String? message;
+  String? data;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    map['type'] = type;
-    if (properties != null) {
-      map['properties'] = properties?.toJson();
-    }
-    return map;
-  }
-
-}
-
-/// message : {"type":"string"}
-/// data : {"type":"string"}
-
-class Properties {
-  Properties({
-      this.message, 
-      this.data,});
-
-  Properties.fromJson(dynamic json) {
-    message = json['message'] != null ? Message.fromJson(json['message']) : null;
-    data = json['data'] != null ? Data.fromJson(json['data']) : null;
-  }
-  Message? message;
-  Data? data;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    if (message != null) {
-      map['message'] = message?.toJson();
-    }
-    if (data != null) {
-      map['data'] = data?.toJson();
-    }
-    return map;
-  }
-
-}
-
-/// type : "string"
-
-class Data {
-  Data({
-      this.type,});
-
-  Data.fromJson(dynamic json) {
-    type = json['type'];
-  }
-  String? type;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['type'] = type;
-    return map;
-  }
-
-}
-
-/// type : "string"
-
-class Message {
-  Message({
-      this.type,});
-
-  Message.fromJson(dynamic json) {
-    type = json['type'];
-  }
-  String? type;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['type'] = type;
+    map['message'] = message;
+    map['data'] = data;
     return map;
   }
 
