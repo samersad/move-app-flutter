@@ -12,7 +12,10 @@ import 'package:move/tabs/profile/update_profile/update_profile.dart';
 import 'package:move/utils/app_routs.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+import 'home_screen/home_screen.dart';
+
+void main()async {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     MultiProvider(
       providers: [
@@ -48,11 +51,12 @@ class MyApp extends StatelessWidget {
       routes: {
         AppRouts.onbord1RouteName: (context) => const Onbord1(),
         AppRouts.onboardingRouteName: (context) => const OnboardingScreen(),
-        AppRouts.loginRouteName: (context) => const Login(),
+        AppRouts.loginRouteName: (context) =>  Login(),
         AppRouts.registerRouteName: (context) => const Register(),
         AppRouts.forgetRouteName: (context) => const Forget(),
         AppRouts.updateProfileRouteName: (context) => const UpdateProfile(),
         AppRouts.resetPasswordRouteName: (context) =>  ResetPassword(),
+        AppRouts.homeScreenRouteName: (context) =>  HomeScreen(),
 
       },
     );

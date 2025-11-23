@@ -26,4 +26,12 @@ class AppAssets{
   static const String on = 'assets/images/on.png';
   static const String ar = 'assets/images/ar.png';
   static const String en = 'assets/images/en.png';
+
+  static const String homeIcon = 'assets/images/home_icon.png';
+  static const String searchIcon = 'assets/images/search_icon.png';
+  static const String  exploreIcon = 'assets/images/explore_icon.png';
+  static const String profileIcon = 'assets/images/profile_icon.png';
+  static const String availableNow = 'assets/images/Available Now.png';
+  static const String watchNow = 'assets/images/Watch Now.png';
+  static const String star = 'assets/images/star.png';
 }
