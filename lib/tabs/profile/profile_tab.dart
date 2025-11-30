@@ -145,6 +145,7 @@ class _ProfileTabState extends State<ProfileTab> {
                     borderColor: AppColor.transparentColor,
                     suffixIcon: Icon(Icons.logout, color: AppColor.white),
                     onTap: () {
+                      SharedHelper.removeToken(key: "token");
                       Navigator.of(context).pushNamedAndRemoveUntil(
                         AppRouts.loginRouteName,
                             (route) => false,

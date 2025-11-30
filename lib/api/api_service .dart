@@ -63,8 +63,10 @@ import 'api_constants.dart';
 
       return LoginResponse.fromJson(response.data); // ← الصحيsح
     } on DioException catch (e) {
+      final errorMessage = e.response?.data["message"] ?? "Unknown Error";
+
       if (e.response != null) {
-        throw Exception("Error: ${e.response?.data}");
+        throw Exception(errorMessage);
       } else {
         throw Exception("Network Error");
       }

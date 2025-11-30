@@ -384,8 +384,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
 
                 SizedBox(height: height * 0.03),
 
-                // CAST (STATIC)
-                Text("Cast", style: AppFonts.regular24white),
+                Text("Cast", style: AppFonts.regular24white),//  CAST (STATIC) مفيش في api movieDetails
                 SizedBox(height: height * 0.02),
                 ListView.separated(
                   shrinkWrap: true,

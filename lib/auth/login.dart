@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:move/api/api_service%20.dart';
@@ -224,7 +223,7 @@ class _LoginState extends State<Login> {
         final message = response.message ?? "";
 
         if (message == "Success Login") {
-          SharedHelper.setToken("${response.data}");
+          SharedHelper.setToken("${response.data}");//
           print(response.data);
           AlertDialogUtils.showMessage(
             context: context,
@@ -242,10 +241,15 @@ class _LoginState extends State<Login> {
 
       } catch (e) {
         AlertDialogUtils.hideLoading(context: context);
+        final error = e.toString().replaceFirst("Exception: ", "");
         AlertDialogUtils.showMessage(
           context: context,
-          msg: e.toString(),
+          msg:error,
           title: "error",
+          pos: "Ok",
+          posAction: () {
+            Navigator.of(context).pop();
+          },
         );
       }
     }

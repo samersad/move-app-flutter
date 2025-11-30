@@ -26,16 +26,18 @@ class Forget extends StatelessWidget {
         automaticallyImplyLeading: true,
         iconTheme: IconThemeData(color: AppColor.yellow),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: Column(
-          children: [
-            Image.asset(AppAssets.forget),
-        SizedBox(height: height*0.03,),
-            CustomTextField(hint:AppLocalizations.of(context)!.email, isPassword: false, controller: emailController, icon: ImageIcon(AssetImage(AppAssets.email),color: AppColor.white,)),
-            SizedBox(height: height*0.02,),
-            CustomButton(text:AppLocalizations.of(context)!.verifyemail, color:AppColor.yellow, borderColor: AppColor.yellow, width: width*0.93, height: height*0.06, textFont: AppFonts.inter20black)
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Column(
+            children: [
+              Image.asset(AppAssets.forget),
+          SizedBox(height: height*0.03,),
+              CustomTextField(hint:AppLocalizations.of(context)!.email, isPassword: false, controller: emailController, icon: ImageIcon(AssetImage(AppAssets.email),color: AppColor.white,)),
+              SizedBox(height: height*0.02,),
+              CustomButton(text:AppLocalizations.of(context)!.verifyemail, color:AppColor.yellow, borderColor: AppColor.yellow, width: width*0.93, height: height*0.06, textFont: AppFonts.inter20black)
+            ],
+          ),
         ),
       ),
     );

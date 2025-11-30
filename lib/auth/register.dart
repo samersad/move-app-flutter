@@ -304,14 +304,22 @@ class _RegisterState extends State<Register> {
             context: context,
             msg: response.message!,
             title: "error",
+
           );
         }
       } catch (e) {
         AlertDialogUtils.hideLoading(context: context);
+        final error = e.toString().replaceFirst("Exception: ", "");
+
         AlertDialogUtils.showMessage(
           context: context,
-          msg: e.toString(),
+          msg: error,
           title: "error",
+          pos: "Ok",
+          posAction: () {
+            Navigator.of(context).pop();
+
+          },
         );
       }
     }

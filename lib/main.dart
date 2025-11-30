@@ -7,6 +7,7 @@ import 'package:move/auth/register.dart';
 import 'package:move/on_bording_screen/onbordscreen.dart';
 import 'package:move/on_bording_screen/onbord1.dart';
 import 'package:move/provider/languaged_provider.dart';
+import 'package:move/shared_helper/shared_helper.dart';
 import 'package:move/tabs/browse/browse_tap.dart';
 import 'package:move/tabs/home/movie_details_screen/movie_details_screen.dart';
 import 'package:move/tabs/profile/update_profile/reset_password/reset_password.dart';
@@ -18,20 +19,26 @@ import 'home_screen/home_screen.dart';
 
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(
-    MultiProvider(
+  String routeName;
+  var token =await SharedHelper.getToken();
+    if (token.isEmpty) {
+      routeName=AppRouts.onbord1RouteName;
+    }
+    else{
+      routeName=AppRouts.homeScreenRouteName;
+    }
+  runApp(MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => AppLanguageProvider()),
-
       ],
-      child: const MyApp(),
+      child: MyApp(routeName:routeName ,),
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+   MyApp({super.key,required this.routeName});
+  String routeName;
   @override
   Widget build(BuildContext context) {
     var languageProvider = Provider.of<AppLanguageProvider>(context);
@@ -47,7 +54,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: AppLocalizations.supportedLocales,
 
 
-      initialRoute: AppRouts.homeScreenRouteName,
+      initialRoute:routeName,
 
 
       routes: {
