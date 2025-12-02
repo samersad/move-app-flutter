@@ -6,6 +6,7 @@ import 'package:move/utils/app_color.dart';
 import 'package:move/utils/app_fonts.dart';
 import '../../api/api_service .dart';
 import '../../model/MoviesResponse.dart';
+import '../../shared_helper/shared_helper.dart';
 import '../../utils/app_routs.dart';
 import 'widgets/carousel_slider_card_large.dart';
 import 'widgets/card_medium.dart';
@@ -135,13 +136,21 @@ class _HomeTapState extends State<HomeTap> {
                       ),
                       items: latestMoviesList.map((movie) {
                         return InkWell(
-                          onTap: () {
+                          onTap: () async {
+                            await SharedHelper.saveMovie({
+                              "id": movie.id,
+                              "title": movie.title,
+                              "image": movie.largeCoverImage,
+                              "rating": movie.rating,
+                              "year": movie.year,
+                            });
                             Navigator.pushNamed(
                               context,
                               AppRouts.movieDetailsScreenRouteName,
                               arguments: movie.id,
                             );
                           },
+
                           child: CarouselSliderCardLarge(movie: movie),
                         );
                       }).toList(),
@@ -159,12 +168,19 @@ class _HomeTapState extends State<HomeTap> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(genre, style: AppFonts.regular20white),
-                    Row(
-                      children: [
-                        Text("See More", style: AppFonts.regular16Yellow),
-                        Icon(Icons.arrow_forward_ios,
-                            size: 15, color: AppColor.yellow),
-                      ],
+                    InkWell(
+                      onTap: () {
+                        Navigator.of(context).pushNamed(AppRouts.browseTapScreenRouteName,
+                        arguments: genre
+                        );
+                      },
+                      child: Row(
+                        children: [
+                          Text("See More", style: AppFonts.regular16Yellow),
+                          Icon(Icons.arrow_forward_ios,
+                              size: 15, color: AppColor.yellow),
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -180,7 +196,14 @@ class _HomeTapState extends State<HomeTap> {
                   itemBuilder: (context, index) {
                     final movie = genreMoviesList[index];
                     return InkWell(
-                      onTap: () {
+                      onTap: () async {
+                        await SharedHelper.saveMovie({
+                          "id": movie.id,
+                          "title": movie.title,
+                          "image": movie.largeCoverImage,
+                          "rating": movie.rating,
+                          "year": movie.year,
+                        });
                         Navigator.pushNamed(
                           context,
                           AppRouts.movieDetailsScreenRouteName,

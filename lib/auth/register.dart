@@ -131,7 +131,7 @@ class _RegisterState extends State<Register> {
                   isPassword: false,
                   controller: nameController,
                   icon: ImageIcon(
-                      AssetImage(AppAssets.name), color: AppColor.whait),
+                      AssetImage(AppAssets.name), color: AppColor.white),
                   validator:(name) {
                     if (name==null || name.trim().isEmpty) {
                       return AppLocalizations.of(context)!.pleaseEnterName;
@@ -145,7 +145,7 @@ class _RegisterState extends State<Register> {
                   isPassword: false,
                   controller: emailController,
                   icon: ImageIcon(
-                      AssetImage(AppAssets.email), color: AppColor.whait),
+                      AssetImage(AppAssets.email), color: AppColor.white),
                   validator:(email) {
                     if (email==null || email.trim().isEmpty) {
                       return AppLocalizations.of(context)!.pleaseEnterEmail;
@@ -165,7 +165,7 @@ class _RegisterState extends State<Register> {
                   isPassword: true,
                   controller: passController,
                   icon: ImageIcon(
-                      AssetImage(AppAssets.pas), color: AppColor.whait),
+                      AssetImage(AppAssets.pas), color: AppColor.white),
                   validator:(text) {
                     if (text==null || text.trim().isEmpty) {
                       return AppLocalizations.of(context)!.pleaseEnterPassword;
@@ -182,7 +182,7 @@ class _RegisterState extends State<Register> {
                   isPassword: true,
                   controller: repassController,
                   icon: ImageIcon(
-                      AssetImage(AppAssets.pas), color: AppColor.whait),
+                      AssetImage(AppAssets.pas), color: AppColor.white),
                   validator:(text) {
                     if (text==null || text.trim().isEmpty) {
                       return AppLocalizations.of(context)!.pleaseEnterPassword;
@@ -203,7 +203,7 @@ class _RegisterState extends State<Register> {
                   controller: phoneController,
                   keyboardType: TextInputType.number,
                   icon: ImageIcon(
-                      AssetImage(AppAssets.phone), color: AppColor.whait),
+                      AssetImage(AppAssets.phone), color: AppColor.white),
                   validator: (phone) {
                     if (phone == null || phone.trim().isEmpty) {
                       return AppLocalizations.of(context)!.pleaseEnterPhone;
@@ -304,14 +304,22 @@ class _RegisterState extends State<Register> {
             context: context,
             msg: response.message!,
             title: "error",
+
           );
         }
       } catch (e) {
         AlertDialogUtils.hideLoading(context: context);
+        final error = e.toString().replaceFirst("Exception: ", "");
+
         AlertDialogUtils.showMessage(
           context: context,
-          msg: e.toString(),
+          msg: error,
           title: "error",
+          pos: "Ok",
+          posAction: () {
+            Navigator.of(context).pop();
+
+          },
         );
       }
     }

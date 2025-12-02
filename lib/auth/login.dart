@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:move/api/api_service%20.dart';
@@ -11,10 +10,9 @@ import 'package:move/utils/app_routs.dart';
 import 'package:move/widget/custom_bottom.dart';
 import 'package:move/widget/custom_text_faild.dart';
 import 'package:move/widget/switch.dart';
-import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../l10n/app_localizations.dart';
+import '../shared_helper/shared_helper.dart';
 import '../widget/alert_dialog_utils.dart';
 
 class Login extends StatefulWidget {
@@ -61,7 +59,7 @@ class _LoginState extends State<Login> {
                   controller: emailController,
                   icon: ImageIcon(
                     AssetImage(AppAssets.email),
-                    color: AppColor.whait,
+                    color: AppColor.white,
                   ),
                   validator: (email) {
                     if (email == null || email
@@ -88,7 +86,7 @@ class _LoginState extends State<Login> {
                 controller: passwordController,
                 icon: ImageIcon(
                   AssetImage(AppAssets.pas),
-                  color: AppColor.whait,
+                  color: AppColor.white,
                 ),
                 validator:(text) {
                   if (text==null || text.trim().isEmpty) {
@@ -223,16 +221,10 @@ class _LoginState extends State<Login> {
         AlertDialogUtils.hideLoading(context: context);
 
         final message = response.message ?? "";
-        final token = response.data ?? "";
 
         if (message == "Success Login") {
-
-          if (token.isNotEmpty) {
-            final prefs = await SharedPreferences.getInstance();
-            await prefs.setString("token", token);
-            print("Token saved successfully: $token");
-          }
-
+          SharedHelper.setToken("${response.data}");//
+          print(response.data);
           AlertDialogUtils.showMessage(
             context: context,
             msg: message,
@@ -249,10 +241,15 @@ class _LoginState extends State<Login> {
 
       } catch (e) {
         AlertDialogUtils.hideLoading(context: context);
+        final error = e.toString().replaceFirst("Exception: ", "");
         AlertDialogUtils.showMessage(
           context: context,
-          msg: e.toString(),
+          msg:error,
           title: "error",
+          pos: "Ok",
+          posAction: () {
+            Navigator.of(context).pop();
+          },
         );
       }
     }

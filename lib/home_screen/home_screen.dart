@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
-import 'package:move/tabs/explore/explore_tap.dart';
+import 'package:move/tabs/profile/profile_tab.dart';
 import 'package:move/utils/app_color.dart';
 
+import '../tabs/browse/browse_tap.dart';
 import '../tabs/home/home_tap.dart';
 import '../tabs/profile/update_profile/update_profile.dart';
 import '../tabs/search/search_tap.dart';
@@ -20,24 +21,24 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> tabs = [
     HomeTap(),
     SearchTap(),
-    ExploreTap(),
-    UpdateProfile(),
+    BrowseTap(),
+    ProfileTab(),
   ];
 
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
-
     return Scaffold(
-      backgroundColor: AppColor.black,
+      backgroundColor: AppColor.transparentColor,
       body: tabs[selectedIndex],
       bottomNavigationBar: Padding(
-        padding: EdgeInsets.symmetric(horizontal: width * 0.01, vertical: height * 0.01),
+        padding: EdgeInsets.only(right: width * 0.01,left: width * 0.01,bottom: height * 0.01,top: height * 0.01 ),
         child: Container(
+          clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(
-            color: AppColor.silver,
             borderRadius: BorderRadius.circular(16),
+            color: AppColor.transparentColor
           ),
           child: AnimatedBottomNavigationBar(
             icons: [
@@ -47,12 +48,14 @@ class _HomeScreenState extends State<HomeScreen> {
               Icons.person,
             ],
             height: height*0.04,
+            iconSize: 35,
             activeIndex: selectedIndex,
             gapLocation: GapLocation.none,
             notchSmoothness: NotchSmoothness.verySmoothEdge,
-            backgroundColor: Colors.transparent,
+            backgroundColor: AppColor.silver,
             activeColor: AppColor.yellow,
-            inactiveColor: AppColor.whait,
+            splashColor: AppColor.red,
+            inactiveColor: AppColor.white,
             onTap: (index) {
               setState(() {
                 selectedIndex = index;
