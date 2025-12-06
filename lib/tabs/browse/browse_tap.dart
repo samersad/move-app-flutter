@@ -20,14 +20,18 @@ class _BrowseTapState extends State<BrowseTap> {
   BrowseViewModel viewModel = BrowseViewModel();
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    viewModel.loadMovies();
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
-     final genreFromArgs = ModalRoute.of(context)?.settings.arguments as String?;
-      viewModel.loadMoviesByGenre(genreFromArgs!);
+      final genreFromArgs = ModalRoute.of(context)?.settings.arguments as String?;
+      if (genreFromArgs != null) {
+        viewModel.genreFromArgs = genreFromArgs;
+      }
+
+      viewModel.loadMovies();
     });
   }
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -85,7 +89,6 @@ class _BrowseTapState extends State<BrowseTap> {
                         childAspectRatio: 0.7,
                       ),
                       itemBuilder: (context, index) {
-                        viewModel.moviesByGenre[index];
                         return InkWell(
                           onTap: () async {
                             await SharedHelper.saveMovie({

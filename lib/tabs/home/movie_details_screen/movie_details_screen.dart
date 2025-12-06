@@ -25,7 +25,7 @@ class MovieDetailsScreen extends StatefulWidget {
 
 class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
   final MovieDetailsScreenViewModel viewModel = MovieDetailsScreenViewModel();
-  late int movieId;
+   int? movieId;
 
   @override
   void initState() {
@@ -33,9 +33,9 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
        movieId = ModalRoute.of(context)?.settings.arguments as int;
-        viewModel.loadMovieDetails(movieId);
-        viewModel.loadMovieSuggestions(movieId);
-        viewModel.loadFavoriteStatus(movieId);
+        viewModel.loadMovieDetails(movieId!);
+        viewModel.loadMovieSuggestions(movieId!);
+        viewModel.loadFavoriteStatus(movieId!);
     });
   }
 

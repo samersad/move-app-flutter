@@ -18,21 +18,21 @@ class BrowseViewModel extends Cubit<BrowseStates> {
     emit(BrowseLoadingState());
     try {
       final response = await ApiService().getMovieList(limit: 50);
-        moviesList = response.data?.movies ?? [];
-        final allGenres = moviesList.expand((m) => m.genres ?? []).toList();
-        genres = allGenres.toSet().toList()..sort();
+      moviesList = response.data?.movies ?? [];
 
-          if (genreFromArgs != null && genres.contains(genreFromArgs)) {
-            selectedIndex = genres.indexOf(genreFromArgs!);
-          }
-          else {
-            selectedIndex = 0;
-            genreFromArgs = genres[0];
-          }
-          await loadMoviesByGenre(genreFromArgs!);
+      final allGenres = moviesList.expand((m) => m.genres ?? []).toList();
+      genres = allGenres.toSet().toList()..sort();
 
-        emit(BrowseSuccessState());
+      if (genreFromArgs != null && genres.contains(genreFromArgs)) {
+        selectedIndex = genres.indexOf(genreFromArgs!);
+      } else {
+        selectedIndex = 0;
+        genreFromArgs = genres[0];
+      }
 
+      await loadMoviesByGenre(genreFromArgs!);
+
+      emit(BrowseSuccessState());
     } catch (e) {
       emit(BrowseErrorState(errorMessage: e.toString()));
     }
